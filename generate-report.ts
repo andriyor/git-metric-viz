@@ -53,6 +53,7 @@ const generateMetrics = (currentMetrics: Metrics, previousMetric: Metrics) => {
   let previous = {};
   const reversedCommits = [...gitLog.all].reverse();
   for (const commit of reversedCommits) {
+    await git.checkout(commit.hash);
     if (fs.existsSync(path.join(repoPath, fileName))) {
       const currentFile = fs.readFileSync(
         path.join(repoPath, fileName),
