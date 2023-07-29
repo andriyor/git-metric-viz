@@ -29,7 +29,7 @@ const CustomTooltip = (data: any) => {
         <p>date: {data.payload[0].payload.commitDate}</p>
         <Payload payload={data.payload[0].payload.author} />
         <p></p>
-        <Payload payload={data.payload[0].payload.metrics.testCoverage} />
+        <Payload payload={data.payload[0].payload.metrics[data.metricName]} />
       </div>
     );
   }
@@ -37,7 +37,7 @@ const CustomTooltip = (data: any) => {
   return null;
 };
 
-export const Chart = ({ metadata }: any) => {
+export const Chart = ({ metadata, metricName }: any) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
@@ -54,11 +54,11 @@ export const Chart = ({ metadata }: any) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="commitDate" />
         <YAxis />
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={<CustomTooltip metricName={metricName} />} />
         <Legend />
         <Line
           type="monotone"
-          dataKey="metrics.testCoverage.value"
+          dataKey={`metrics.${metricName}.value`}
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />

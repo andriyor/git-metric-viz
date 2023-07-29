@@ -15,7 +15,6 @@ type Author = {
 
 type Metric = {
   name: string;
-  increase: number;
   value: number;
 };
 
@@ -33,15 +32,19 @@ const getUniqAuthors = (info: Info[]) => {
   return Object.values(authors);
 };
 
+const getUniqMetrics = (info: Info[]) => {
+  const metrics = new Set(info.flatMap((info) => Object.keys(info.metrics)));
+  return Array.from(metrics);
+};
+
 type Metrics = Record<string, number>;
 
-const generateMetrics = (currentMetrics: Metrics, previousMetric: Metrics) => {
+const generateMetrics = (currentMetrics: Metrics) => {
   const metricsResult: Record<string, Metric> = {};
   for (const metric in currentMetrics) {
     metricsResult[metric] = {
       name: metric,
-      value: currentMetrics[metric],
-      increase: currentMetrics[metric] - previousMetric[metric],
+      value: currentMetrics[metric]
     };
   }
   return metricsResult;
@@ -50,7 +53,6 @@ const generateMetrics = (currentMetrics: Metrics, previousMetric: Metrics) => {
 (async () => {
   const gitLog = await git.log();
   const info: Info[] = [];
-  let previous = {};
   const reversedCommits = [...gitLog.all].reverse();
   for (const commit of reversedCommits) {
     await git.checkout(commit.hash);
@@ -66,17 +68,18 @@ const generateMetrics = (currentMetrics: Metrics, previousMetric: Metrics) => {
           authorName: commit.author_name,
           authorEmail: commit.author_email,
         },
-        metrics: generateMetrics(currentJson, previous),
+        metrics: generateMetrics(currentJson),
       });
-      previous = currentJson;
     } else {
       break;
     }
   }
   const authors = getUniqAuthors(info);
+  const metrics = getUniqMetrics(info);
   const result = {
     metadata: info,
     authors,
+    metrics
   };
   if (gitLog.latest) {
     await git.checkout(gitLog.latest.hash);

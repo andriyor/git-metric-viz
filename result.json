@@ -1,90 +1,6 @@
 {
   "metadata": [
     {
-      "commitDate": "2023-07-14",
-      "author": {
-        "authorName": "Andrii Oriekhov",
-        "authorEmail": "andriyorehov@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 54,
-          "increase": null
-        }
-      }
-    },
-    {
-      "commitDate": "2023-07-15",
-      "author": {
-        "authorName": "Andrii Oriekhov",
-        "authorEmail": "andriyorehov@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 66,
-          "increase": 12
-        }
-      }
-    },
-    {
-      "commitDate": "2023-07-16",
-      "author": {
-        "authorName": "Andrii Oriekhov",
-        "authorEmail": "andriyorehov@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 75,
-          "increase": 9
-        }
-      }
-    },
-    {
-      "commitDate": "2023-07-17",
-      "author": {
-        "authorName": "Andrii Oriekhov",
-        "authorEmail": "andriyorehov@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 80,
-          "increase": 5
-        }
-      }
-    },
-    {
-      "commitDate": "2023-07-18",
-      "author": {
-        "authorName": "Andrii Oriekhov",
-        "authorEmail": "andriyorehov@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 92,
-          "increase": 12
-        }
-      }
-    },
-    {
-      "commitDate": "2023-07-19",
-      "author": {
-        "authorName": "main",
-        "authorEmail": "main@gmail.com"
-      },
-      "metrics": {
-        "testCoverage": {
-          "name": "testCoverage",
-          "value": 92,
-          "increase": 0
-        }
-      }
-    },
-    {
       "commitDate": "2023-07-20",
       "author": {
         "authorName": "Andrii Oriekhov",
@@ -93,22 +9,28 @@
       "metrics": {
         "testCoverage": {
           "name": "testCoverage",
-          "value": 95,
-          "increase": 3
+          "value": 54
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 185
         }
       }
     },
     {
       "commitDate": "2023-07-21",
       "author": {
-        "authorName": "main",
-        "authorEmail": "main@gmail.com"
+        "authorName": "Andrii Oriekhov",
+        "authorEmail": "andriyorehov@gmail.com"
       },
       "metrics": {
         "testCoverage": {
           "name": "testCoverage",
-          "value": 95,
-          "increase": 0
+          "value": 66
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 230
         }
       }
     },
@@ -121,8 +43,113 @@
       "metrics": {
         "testCoverage": {
           "name": "testCoverage",
-          "value": 100,
-          "increase": 5
+          "value": 75
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 270
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-23",
+      "author": {
+        "authorName": "Andrii Oriekhov",
+        "authorEmail": "andriyorehov@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 80
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 300
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-24",
+      "author": {
+        "authorName": "Andrii Oriekhov",
+        "authorEmail": "andriyorehov@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 92
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 340
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-25",
+      "author": {
+        "authorName": "main",
+        "authorEmail": "main@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 92
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 380
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-26",
+      "author": {
+        "authorName": "Andrii Oriekhov",
+        "authorEmail": "andriyorehov@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 95
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 410
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-27",
+      "author": {
+        "authorName": "main",
+        "authorEmail": "main@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 95
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 460
+        }
+      }
+    },
+    {
+      "commitDate": "2023-07-28",
+      "author": {
+        "authorName": "Andrii Oriekhov",
+        "authorEmail": "andriyorehov@gmail.com"
+      },
+      "metrics": {
+        "testCoverage": {
+          "name": "testCoverage",
+          "value": 100
+        },
+        "LOC": {
+          "name": "LOC",
+          "value": 500
         }
       }
     }
@@ -136,5 +163,9 @@
       "authorName": "main",
       "authorEmail": "main@gmail.com"
     }
+  ],
+  "metrics": [
+    "testCoverage",
+    "LOC"
   ]
 }
