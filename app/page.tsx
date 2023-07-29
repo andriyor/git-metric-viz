@@ -16,6 +16,8 @@ export default function Home() {
         (m) => m.author.authorEmail === selectedAuthor.authorEmail,
       );
       setMetadata(filtered);
+    } else {
+      setMetadata(json.metadata);
     }
   }, [selectedAuthor]);
 
