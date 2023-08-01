@@ -22,12 +22,12 @@ const getRandomInt = (min: number, max: number) => {
 
 const generateMaxArray = (min: number, max: number, steps: number) => {
   const diff = max - min;
-  const increase = Math.floor(diff / steps);
+  const increase = Number((diff / steps).toFixed(2));
   const result: number[] = [];
   let prev = min + increase;
   for (const number of [...Array(steps).keys()]) {
     result.push(prev);
-    prev = increase + prev;
+    prev = Number((increase + prev).toFixed(2));
   }
   return result;
 };
@@ -47,8 +47,10 @@ const authors = [
 
 (async () => {
   const info: Info[] = [];
-  const days = 20;
-  const previousTestCoverage = generateMaxArray(53, 100, days).reverse();
+  const daysInMonth = 30;
+  const months = 3;
+  const days = months * daysInMonth;
+  const previousTestCoverage = generateMaxArray(20, 100, days).reverse();
   const previousLOC = generateMaxArray(185, 500, days).reverse();
   for (const day of [...Array(days).keys()].reverse()) {
     const prevIndex = day - 1 === -1 ? 0 : day - 1;
