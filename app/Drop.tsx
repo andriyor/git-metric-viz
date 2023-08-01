@@ -1,7 +1,13 @@
 import { useDropzone } from "react-dropzone";
 import "react-dropzone/examples/theme.css";
 
-export const Drop = ({onDropReport}: any) => {
+import { MetricReport } from "@/generate-report";
+
+export const Drop = ({
+  onDropReport,
+}: {
+  onDropReport: (report: MetricReport) => void;
+}) => {
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
     accept: {
@@ -12,7 +18,7 @@ export const Drop = ({onDropReport}: any) => {
       reader.onload = function (e) {
         const contents = e.target?.result as string;
         if (contents) {
-          onDropReport(JSON.parse(contents))
+          onDropReport(JSON.parse(contents) as MetricReport);
         }
       };
       reader.readAsText(file);

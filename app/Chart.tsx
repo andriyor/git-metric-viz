@@ -10,8 +10,9 @@ import {
   Brush,
   ResponsiveContainer,
 } from "recharts";
+import { Info } from "@/generate-report";
 
-const Payload = ({ payload }: any) => {
+const Payload = ({ payload }: { payload: Record<string, string> }) => {
   return (
     <div>
       {Object.keys(payload).map((key, index) => (
@@ -38,7 +39,13 @@ const CustomTooltip = (data: any) => {
   return null;
 };
 
-export const Chart = ({ metadata, metricName }: any) => {
+export const Chart = ({
+  metadata,
+  metricName,
+}: {
+  metadata: Info[];
+  metricName: string;
+}) => {
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
@@ -63,7 +70,7 @@ export const Chart = ({ metadata, metricName }: any) => {
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
-        <Brush/>
+        <Brush />
       </LineChart>
     </ResponsiveContainer>
   );

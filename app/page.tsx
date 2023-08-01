@@ -7,11 +7,13 @@ import { Authors } from "@/app/Authors";
 import { Metrics } from "@/app/Metric";
 import { Container } from "@mui/material";
 import { Drop } from "@/app/Drop";
+import { Author, Info, MetricReport } from "@/generate-report";
 
-const addDiffToMetrics = (currentMetrics: any) => {
+const addDiffToMetrics = (currentMetrics: Info[]) => {
   let previousValue = currentMetrics[0].metrics;
   for (const metricsResultElement of currentMetrics) {
     for (const metric in metricsResultElement.metrics) {
+      // @ts-ignore
       metricsResultElement.metrics[metric]["diff"] =
         metricsResultElement.metrics[metric].value -
         previousValue[metric].value;
@@ -22,16 +24,16 @@ const addDiffToMetrics = (currentMetrics: any) => {
 };
 
 export default function Home() {
-  const [selectedAuthor, setSelectedAuthor] = useState();
-  const [selectedMetric, setSelectedMetric] = useState();
-  const [metadata, setMetadata] = useState([]);
-  const [report, setReport] = useState<any>();
+  const [selectedAuthor, setSelectedAuthor] = useState<Author | null>();
+  const [selectedMetric, setSelectedMetric] = useState<string>('');
+  const [metadata, setMetadata] = useState<Info[]>([]);
+  const [report, setReport] = useState<MetricReport>();
 
   useEffect(() => {
     if (report?.metadata?.length) {
       if (selectedAuthor) {
         const filtered = report.metadata.filter(
-          (m: any) => m.author.authorEmail === selectedAuthor.authorEmail,
+          (m) => m.author.authorEmail === selectedAuthor.authorEmail,
         );
         setMetadata(addDiffToMetrics(filtered));
       } else {
@@ -40,7 +42,7 @@ export default function Home() {
     }
   }, [selectedAuthor, report]);
 
-  const onMetricDrop = (metric: any) => {
+  const onMetricDrop = (metric: MetricReport) => {
     setSelectedMetric(metric.metrics[0]);
     setReport(metric);
   };
@@ -48,7 +50,7 @@ export default function Home() {
   return (
     <div className="mt-5">
       <Container maxWidth="xl">
-        {metadata.length ? (
+        {report && metadata.length ? (
           <Grid container spacing={2}>
             <Grid item xs={10}>
               <div style={{ height: "600px" }}>
@@ -57,7 +59,10 @@ export default function Home() {
             </Grid>
             <Grid item xs={2}>
               <div className="mb-3">
-                <Authors onAuthorClick={setSelectedAuthor} authors={report.authors} />
+                <Authors
+                  onAuthorClick={setSelectedAuthor}
+                  authors={report.authors}
+                />
               </div>
               <div>
                 <Metrics

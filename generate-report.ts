@@ -8,7 +8,7 @@ const fileName = "report.json";
 
 const git = simpleGit({ baseDir: repoPath });
 
-type Author = {
+export type Author = {
   authorName: string;
   authorEmail: string;
 };
@@ -18,10 +18,16 @@ type Metric = {
   value: number;
 };
 
-type Info = {
+export type Info = {
   commitDate: string;
   author: Author;
   metrics: Record<string, Metric>;
+};
+
+export type MetricReport = {
+  metadata: Info[];
+  authors: Author[];
+  metrics: string[];
 };
 
 const getUniqAuthors = (info: Info[]) => {
@@ -44,7 +50,7 @@ const generateMetrics = (currentMetrics: Metrics) => {
   for (const metric in currentMetrics) {
     metricsResult[metric] = {
       name: metric,
-      value: currentMetrics[metric]
+      value: currentMetrics[metric],
     };
   }
   return metricsResult;
@@ -76,10 +82,10 @@ const generateMetrics = (currentMetrics: Metrics) => {
   }
   const authors = getUniqAuthors(info);
   const metrics = getUniqMetrics(info);
-  const result = {
+  const result: MetricReport = {
     metadata: info,
     authors,
-    metrics
+    metrics,
   };
   if (gitLog.latest) {
     await git.checkout(gitLog.latest.hash);
