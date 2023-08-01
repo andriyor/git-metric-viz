@@ -4,9 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import json from "@/result.json";
-
-export const Metrics = ({ onMetricClick, value }: any) => {
+export const Metrics = ({ metrics, onMetricClick, value }: any) => {
   return (
     <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       <FormControl fullWidth>
@@ -18,7 +16,7 @@ export const Metrics = ({ onMetricClick, value }: any) => {
           value={value}
           onChange={(event) => onMetricClick(event.target.value)}
         >
-          {json.metrics.map((item) => (
+          {metrics.map((item: any) => (
             <MenuItem key={item} value={item}>
               {item}
             </MenuItem>

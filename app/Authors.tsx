@@ -3,15 +3,13 @@ import Avatar from "@mui/material/Avatar";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-import json from "@/result.json";
-
-export const Authors = ({ onAuthorClick }: any) => {
+export const Authors = ({ authors, onAuthorClick }: any) => {
   return (
     <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
       <Autocomplete
         disablePortal
         id="combo-box-demo"
-        options={json.authors}
+        options={authors}
         sx={{ width: 300 }}
         onChange={(event, value: any) => onAuthorClick(value)}
         getOptionLabel={(option) => option.authorName}
