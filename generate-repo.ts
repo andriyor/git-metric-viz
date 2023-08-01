@@ -8,94 +8,62 @@ type Info = {
     testCoverage: number;
     LOC: number;
   };
-  authorName: string;
-  authorEmail: string;
+  author: {
+    authorName: string;
+    authorEmail: string;
+  };
 };
 
+const getRandomInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
+const generateMaxArray = (min: number, max: number, steps: number) => {
+  const diff = max - min;
+  const increase = Math.floor(diff / steps);
+  const result: number[] = [];
+  let prev = min + increase;
+  for (const number of [...Array(steps).keys()]) {
+    result.push(prev);
+    prev = increase + prev;
+  }
+  return result;
+};
+
+const randomElement = (array: any[]) => array[Math.floor(Math.random() * array.length)];
+
+const authors = [
+  {
+    authorName: "Andrii Oriekhov",
+    authorEmail: "andriyorehov@gmail.com",
+  },
+  {
+    authorName: "main",
+    authorEmail: "main@gmail.com",
+  },
+];
+
 (async () => {
-  const info: Info[] = [
-    {
-      day: 9,
+  const info: Info[] = [];
+  const days = 20;
+  const previousTestCoverage = generateMaxArray(53, 100, days).reverse();
+  const previousLOC = generateMaxArray(185, 500, days).reverse();
+  for (const day of [...Array(days).keys()].reverse()) {
+    const prevIndex = day - 1 === -1 ? 0 : day - 1;
+    info.push({
+      day: day,
       metric: {
-        testCoverage: 54,
-        LOC: 185,
+        testCoverage: getRandomInt(
+          previousTestCoverage[prevIndex],
+          previousTestCoverage[day],
+        ),
+        LOC: getRandomInt(previousLOC[prevIndex], previousLOC[day]),
       },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 8,
-      metric: {
-        testCoverage: 66,
-        LOC: 230,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 7,
-      metric: {
-        testCoverage: 75,
-        LOC: 270,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 6,
-      metric: {
-        testCoverage: 80,
-        LOC: 300,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 5,
-      metric: {
-        testCoverage: 92,
-        LOC: 340,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 4,
-      metric: {
-        testCoverage: 92,
-        LOC: 380,
-      },
-      authorName: "main",
-      authorEmail: "main@gmail.com",
-    },
-    {
-      day: 3,
-      metric: {
-        testCoverage: 95,
-        LOC: 410,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-    {
-      day: 2,
-      metric: {
-        testCoverage: 95,
-        LOC: 460,
-      },
-      authorName: "main",
-      authorEmail: "main@gmail.com",
-    },
-    {
-      day: 1,
-      metric: {
-        testCoverage: 100,
-        LOC: 500,
-      },
-      authorName: "Andrii Oriekhov",
-      authorEmail: "andriyorehov@gmail.com",
-    },
-  ];
+      author: randomElement(authors)
+    });
+  }
 
   process.chdir("..");
 
@@ -110,8 +78,10 @@ type Info = {
   for (const arrayElement of info) {
     fs.writeFileSync("report.json", JSON.stringify(arrayElement.metric));
     await exec("git add .");
-    await exec(`git config --global user.name "${arrayElement.authorName}"`);
-    await exec(`git config user.email "${arrayElement.authorEmail}"`);
+    await exec(
+      `git config --global user.name "${arrayElement.author.authorName}"`,
+    );
+    await exec(`git config user.email "${arrayElement.author.authorEmail}"`);
     await exec(
       `git commit --allow-empty --date="${arrayElement.day} day ago" -m "changes for day ${arrayElement.day}"`,
     );
