@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Brush,
   ResponsiveContainer,
 } from "recharts";
 
@@ -62,6 +63,7 @@ export const Chart = ({ metadata, metricName }: any) => {
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
+        <Brush/>
       </LineChart>
     </ResponsiveContainer>
   );
