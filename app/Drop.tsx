@@ -1,7 +1,7 @@
 import { useDropzone } from "react-dropzone";
 import "react-dropzone/examples/theme.css";
 
-import { MetricReport } from "@/generate-report";
+import { MetricReport } from "@/generate-report-based-on-file";
 
 export const Drop = ({
   onDropReport,

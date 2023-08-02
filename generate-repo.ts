@@ -78,7 +78,8 @@ const authors = [
   await exec("git init");
 
   for (const arrayElement of info) {
-    fs.writeFileSync("report.json", JSON.stringify(arrayElement.metric));
+    const metric = JSON.stringify(arrayElement.metric)
+    fs.writeFileSync("report.json", metric);
     await exec("git add .");
     await exec(
       `git config --global user.name "${arrayElement.author.authorName}"`,
@@ -86,6 +87,9 @@ const authors = [
     await exec(`git config user.email "${arrayElement.author.authorEmail}"`);
     await exec(
       `git commit --allow-empty --date="${arrayElement.day} day ago" -m "changes for day ${arrayElement.day}"`,
+    );
+    await exec(
+      `git notes add -m "${metric}"`,
     );
   }
 })();

@@ -10,7 +10,7 @@ import {
   Brush,
   ResponsiveContainer,
 } from "recharts";
-import { Info } from "@/generate-report";
+import { Info } from "@/generate-report-based-on-file";
 
 const Payload = ({ payload }: { payload: Record<string, string> }) => {
   return (

@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
-import { Author } from "@/generate-report";
+import { Author } from "@/generate-report-based-on-file";
 
 export const Authors = ({
   authors,

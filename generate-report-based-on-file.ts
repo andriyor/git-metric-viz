@@ -30,7 +30,7 @@ export type MetricReport = {
   metrics: string[];
 };
 
-const getUniqAuthors = (info: Info[]) => {
+export const getUniqAuthors = (info: Info[]) => {
   const authors: Record<string, Author> = {};
   for (const i of info) {
     authors[i.author.authorEmail] = i.author;
@@ -38,14 +38,14 @@ const getUniqAuthors = (info: Info[]) => {
   return Object.values(authors);
 };
 
-const getUniqMetrics = (info: Info[]) => {
+export const getUniqMetrics = (info: Info[]) => {
   const metrics = new Set(info.flatMap((info) => Object.keys(info.metrics)));
   return Array.from(metrics);
 };
 
 type Metrics = Record<string, number>;
 
-const generateMetrics = (currentMetrics: Metrics) => {
+export const generateMetrics = (currentMetrics: Metrics) => {
   const metricsResult: Record<string, Metric> = {};
   for (const metric in currentMetrics) {
     metricsResult[metric] = {
