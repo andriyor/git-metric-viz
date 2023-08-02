@@ -12,6 +12,7 @@ import { Drop } from "@/app/Drop";
 import { Author, Info, MetricReport } from "@/generate-report-based-on-file";
 
 import reportResult from "../result.json";
+import UAParser from "ua-parser-js";
 
 const addDiffToMetrics = (currentMetrics: Info[]) => {
   let previousValue = currentMetrics[0].metrics;
@@ -56,6 +57,10 @@ export default function Home() {
     setReport(reportResult);
   };
 
+  const parser = new UAParser();
+  const result = parser.getResult();
+  console.log(result.browser);
+
   return (
     <div className="mt-5">
       <Container maxWidth="xl">
@@ -92,6 +97,8 @@ export default function Home() {
               Load example report
             </Button>
           </Grid>
+          <div><span>{result.browser.name}</span></div>
+          <div><span>{result.browser.version}</span></div>
         </Grid>
       </Container>
     </div>
