@@ -1,3 +1,10 @@
+# git-metric-viz 
+
+Visualize result of GitHub action [andriyor/github-action-git-example: GitHub action which create commit with update of coverage metrics](https://github.com/andriyor/github-action-git-example)
+
+<img width="1624" alt="image" src="https://github.com/user-attachments/assets/87455988-ebd0-4908-9bf2-43bf037c95ca">
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
